@@ -242,9 +242,7 @@
     }
 
     /* Hero */
-    .hero{
-      padding: 28px 0 10px;
-    }
+    .hero{ padding: 28px 0 10px; }
     .hero-grid{
       display:grid;
       grid-template-columns: 1.15fr .85fr;
@@ -278,9 +276,7 @@
       height:100%;
       gap: 14px;
     }
-    .hero-top{
-      display:flex; gap:10px; flex-wrap:wrap;
-    }
+    .hero-top{ display:flex; gap:10px; flex-wrap:wrap; }
     .hero h2{
       margin: 0;
       font-size: 42px;
@@ -318,13 +314,8 @@
       display:flex; align-items:flex-start; justify-content:space-between; gap:10px;
     }
     .side-card h3{ margin:0; font-size:18px; }
-    .side-card .meta{
-      font-size:13px; color:var(--muted);
-      line-height:1.4;
-    }
-    .badges{
-      display:flex; flex-wrap:wrap; gap:10px;
-    }
+    .side-card .meta{ font-size:13px; color:var(--muted); line-height:1.4; }
+    .badges{ display:flex; flex-wrap:wrap; gap:10px; }
     .statgrid{
       display:grid;
       grid-template-columns: 1fr 1fr;
@@ -348,10 +339,7 @@
       gap: 14px;
       margin-bottom: 16px;
     }
-    .section-head h3{
-      margin:0;
-      font-size: 28px;
-    }
+    .section-head h3{ margin:0; font-size: 28px; }
     .section-head p{
       margin:0;
       max-width: 60ch;
@@ -484,27 +472,34 @@
       border-color: rgba(202,162,74,.45);
       box-shadow: 0 18px 44px rgba(0,0,0,.12);
     }
+
+    /* Product image (REAL image) */
     .img{
       height: 150px;
+      position:relative;
       background:
         linear-gradient(135deg, rgba(202,162,74,.18), rgba(74,15,30,.14)),
         radial-gradient(400px 170px at 30% 20%, rgba(255,255,255,.40), transparent 55%);
-      display:flex; align-items:center; justify-content:center;
-      position:relative;
+      overflow:hidden;
+    }
+    .img img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      transform: scale(1.02);
+      filter: saturate(1.05) contrast(1.02);
     }
     .img .ph{
-      width: 64px; height: 64px;
-      border-radius: 18px;
+      position:absolute;
+      inset:0;
       display:flex; align-items:center; justify-content:center;
-      background: rgba(255,255,255,.55);
-      border:1px solid rgba(255,255,255,.55);
-      box-shadow: 0 16px 40px rgba(0,0,0,.10);
       color: rgba(74,15,30,.92);
       font-size: 26px;
+      background: linear-gradient(135deg, rgba(202,162,74,.18), rgba(74,15,30,.14));
     }
-    .card .body{
-      padding: 12px;
-    }
+
+    .card .body{ padding: 12px; }
     .name{
       margin:0;
       font-weight:800;
@@ -522,10 +517,7 @@
       display:flex; align-items:center; justify-content:space-between;
       gap: 10px;
     }
-    .price{
-      font-weight:900;
-      color: rgba(74,15,30,.95);
-    }
+    .price{ font-weight:900; color: rgba(74,15,30,.95); }
     .card .actions{
       display:flex; gap:8px;
       margin-top: 10px;
@@ -548,11 +540,7 @@
       padding: 18px;
       overflow:hidden;
     }
-    .list{
-      display:grid;
-      gap: 10px;
-      margin-top: 10px;
-    }
+    .list{ display:grid; gap: 10px; margin-top: 10px; }
     .li{
       display:flex; gap:12px;
       padding: 12px;
@@ -594,11 +582,7 @@
     .oc i{ color: rgba(74,15,30,.90); }
 
     /* FAQs */
-    .faq{
-      display:grid;
-      gap: 10px;
-      margin-top: 12px;
-    }
+    .faq{ display:grid; gap: 10px; margin-top: 12px; }
     details{
       border-radius: 18px;
       background: rgba(255,255,255,.62);
@@ -682,6 +666,9 @@
       flex-wrap:wrap;
     }
 
+    /* ✅ FIX 1: Hide catalog section properly on ALL screens (not only mobile) */
+    .catalog-hidden { display:none; }
+
     /* Cart Drawer */
     .drawer-overlay{
       position:fixed; inset:0;
@@ -731,23 +718,24 @@
       box-shadow: 0 10px 25px rgba(0,0,0,.06);
       margin-bottom: 10px;
     }
+
+    /* mini thumbnail in cart */
     .miniimg{
       width:54px; height:54px; border-radius:16px;
+      overflow:hidden;
       background: linear-gradient(135deg, rgba(202,162,74,.20), rgba(74,15,30,.15));
-      display:flex; align-items:center; justify-content:center;
       border:1px solid rgba(27,26,25,.10);
-      color: rgba(74,15,30,.92);
-      font-size: 18px;
+      display:flex; align-items:center; justify-content:center;
     }
+    .miniimg img{ width:100%; height:100%; object-fit:cover; display:block; }
+    .miniimg .mi-ph{ color: rgba(74,15,30,.92); font-size: 18px; }
+
     .ci-top{
       display:flex; align-items:flex-start; justify-content:space-between; gap: 10px;
     }
     .ci-name{ font-weight:900; font-size: 13px; line-height:1.25; margin:0; }
     .ci-meta{ color: var(--muted); font-size: 12px; margin-top:3px; }
-    .qty{
-      display:flex; align-items:center; gap: 8px;
-      margin-top: 10px;
-    }
+    .qty{ display:flex; align-items:center; gap: 8px; margin-top: 10px; }
     .qbtn{
       width:34px; height:34px; border-radius: 12px;
       border:1px solid rgba(27,26,25,.12);
@@ -757,11 +745,7 @@
       transition: .15s ease;
     }
     .qbtn:hover{ border-color: rgba(202,162,74,.45); transform: translateY(-1px); }
-    .qval{
-      min-width: 28px;
-      text-align:center;
-      font-weight:900;
-    }
+    .qval{ min-width: 28px; text-align:center; font-weight:900; }
 
     .drawer-foot{
       border-top: 1px solid rgba(27,26,25,.10);
@@ -770,10 +754,7 @@
       display:grid;
       gap: 10px;
     }
-    .totals{
-      display:flex; align-items:center; justify-content:space-between;
-      font-weight:900;
-    }
+    .totals{ display:flex; align-items:center; justify-content:space-between; font-weight:900; }
     .totals span{ color: rgba(74,15,30,.95); }
     .form{
       display:grid;
@@ -852,18 +833,17 @@
     .bigimg{
       border-radius: 20px;
       min-height: 220px;
+      overflow:hidden;
       background: linear-gradient(135deg, rgba(202,162,74,.22), rgba(74,15,30,.16));
       border:1px solid rgba(27,26,25,.10);
       display:flex; align-items:center; justify-content:center;
       box-shadow: 0 16px 40px rgba(0,0,0,.10);
     }
+    .bigimg img{ width:100%; height:100%; object-fit:cover; display:block; }
     .bigimg i{ font-size: 42px; color: rgba(74,15,30,.92); }
     .modal-body h4{ margin:0; font-size: 22px; }
     .modal-body .p{ margin:8px 0 0; color: var(--muted); font-size: 13px; line-height:1.6; }
-    .modal-body .meta{
-      margin-top: 10px;
-      display:flex; gap: 10px; flex-wrap:wrap;
-    }
+    .modal-body .meta{ margin-top: 10px; display:flex; gap: 10px; flex-wrap:wrap; }
 
     /* Floating WhatsApp */
     .float-wa{
@@ -882,6 +862,34 @@
       transition: transform .16s ease, box-shadow .16s ease;
     }
     .float-wa:hover{ transform: translateY(-3px); box-shadow: 0 24px 60px rgba(0,0,0,.22); }
+
+    /* ✅ NEW: Floating Cart button ABOVE WhatsApp */
+    .float-cart{
+      position:fixed;
+      bottom: 74px; /* above whatsapp */
+      right: 16px;
+      z-index: 71;
+      width:56px; height:56px;
+      border-radius: 18px;
+      border:1px solid rgba(27,26,25,.12);
+      background: rgba(255,255,255,.85);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 18px 44px rgba(0,0,0,.16);
+      display:flex; align-items:center; justify-content:center;
+      cursor:pointer;
+      transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+      position:relative;
+    }
+    .float-cart:hover{
+      transform: translateY(-3px);
+      border-color: rgba(202,162,74,.45);
+      box-shadow: 0 24px 60px rgba(0,0,0,.22);
+    }
+    .float-cart i{ color: rgba(74,15,30,.95); font-size:20px; }
+    .float-cart .cart-count{
+      top:-6px; right:-6px;
+      border-color: rgba(255,255,255,.9);
+    }
 
     /* Reveal animations */
     .reveal{
@@ -912,31 +920,14 @@
       .contact-cards{ grid-template-columns: 1fr; }
     }
     @media (max-width: 560px){
-  /* Reduce overall vertical spacing on mobile */
-  section{ padding: 22px 0; }
-.catalog-hidden { display: none; }
-  /* Make categories look perfect: 1 column */
-  .tiles{ grid-template-columns: 1fr; }
-   /* Less gap between categories and catalog */
-#categories{ padding-bottom: 12px; }
-#catalogSection{ padding-top: 12px !important; }
-  /* Make tile content fit nicely */
-  .tile{
-    padding: 12px;
-    min-height: 72px;
-  }
-  .tile i{
-    width: 42px; height: 42px;
-    border-radius: 14px;
-  }
-  .tile .go{
-    width: 36px; height: 36px;
-    border-radius: 14px;
-  }
-
-  /* Reduce heading spacing */
-  .section-head{ margin-bottom: 12px; }
-}
+      section{ padding: 22px 0; }
+      .tiles{ grid-template-columns: 1fr; }
+      #categories{ padding-bottom: 12px; }
+      #catalogSection{ padding-top: 12px !important; }
+      .tile{ padding: 12px; min-height: 72px; }
+      .tile i{ width: 42px; height: 42px; border-radius: 14px; }
+      .tile .go{ width: 36px; height: 36px; border-radius: 14px; }
+    }
   </style>
 </head>
 
@@ -1082,7 +1073,7 @@
         </div>
 
         <div id="catalogTop"></div>
-     <div class="products" id="productGrid"></div>
+        <div class="products" id="productGrid"></div>
       </div>
     </div>
   </section>
@@ -1194,7 +1185,6 @@
         </div>
 
         <div class="map reveal" aria-label="Google map embed">
-          <!-- Using coordinates embed -->
           <iframe
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
@@ -1348,6 +1338,12 @@
     </div>
   </footer>
 
+  <!-- ✅ NEW: Floating Cart -->
+  <button class="float-cart" id="floatCartBtn" aria-label="Open cart">
+    <i class="fa-solid fa-bag-shopping"></i>
+    <div class="cart-count" id="cartCountFloat">0</div>
+  </button>
+
   <!-- Floating WhatsApp -->
   <a class="float-wa" id="floatWaBtn" href="#" aria-label="Chat on WhatsApp">
     <i class="fa-brands fa-whatsapp" style="font-size:18px;"></i>
@@ -1421,7 +1417,7 @@
         <button class="iconbtn" id="closeModalBtn" aria-label="Close details"><i class="fa-solid fa-xmark"></i></button>
       </div>
       <div class="modal-body">
-        <div class="bigimg"><i class="fa-solid fa-image"></i></div>
+        <div class="bigimg" id="modalImgWrap"><i class="fa-solid fa-image"></i></div>
         <div>
           <h4 class="h-title" id="modalName">—</h4>
           <div class="meta">
@@ -1434,7 +1430,7 @@
             <button class="btn" id="modalGoCartBtn"><i class="fa-solid fa-arrow-right"></i> Open Cart</button>
           </div>
           <div class="muted" style="margin-top:10px; font-size:12px; font-weight:600;">
-            Note: Images are clean placeholders. Replace with your real product photos anytime.
+            Note: Put your product photos in <b>images/products/</b> and update PRODUCT_IMAGES below.
           </div>
         </div>
       </div>
@@ -1456,6 +1452,40 @@
     };
 
     /***********************
+     * IMAGE SETUP (IMPORTANT)
+     * 1) Create a folder: images/products/
+     * 2) Put your images there (jpg/png)
+     * 3) Change paths below
+     ***********************/
+    const PRODUCT_IMAGES = {
+      // Celebration
+      "celebration-1": "images/products/celebration-balloons.jpg",
+      "celebration-2": "images/products/celebration-foil-number.jpg",
+      // Cosmetics
+      "cosmetics-1": "images/products/cosmetics-lipstick.jpg",
+      "cosmetics-2": "images/products/cosmetics-kajal.jpg",
+      // School
+      "school-1": "images/products/school-notebook.jpg",
+      "school-2": "images/products/school-pen-set.jpg",
+      // Marriage
+      "marriage-1": "images/products/marriage-shagun.jpg",
+      "marriage-2": "images/products/marriage-thali.jpg",
+      // Handcraft
+      "handcraft-1": "images/products/handcraft-cards.jpg",
+      "handcraft-2": "images/products/handcraft-wallhanging.jpg",
+      // Gifts
+      "gifts-1": "images/products/gifts-teddy.jpg",
+      "gifts-2": "images/products/gifts-mug.jpg",
+      // Jewellery
+      "jewellery-1": "images/products/jewellery-studs.jpg",
+      "jewellery-2": "images/products/jewellery-necklace.jpg"
+    };
+
+    function imgFor(product){
+      return PRODUCT_IMAGES[product.id] || ""; // empty => fallback placeholder
+    }
+
+    /***********************
      * PRODUCT DATA (70)
      ***********************/
     const CATEGORIES = [
@@ -1468,7 +1498,7 @@
       { id:"jewellery", name:"Jewellery", icon:"fa-gem", hint:"Imitation & accessories" },
     ];
 
-    // Icons per category for placeholders
+    // Icons per category for fallback
     const CAT_ICON = {
       celebration: "fa-balloons",
       cosmetics: "fa-spray-can-sparkles",
@@ -1479,7 +1509,6 @@
       jewellery: "fa-gem"
     };
 
-    // Build realistic products (10 each)
     const PRODUCTS = [
       // Celebration Items (10)
       p("celebration","Premium Latex Balloons (Pack of 50)",199,"Bright assorted balloons for parties & decor.",1),
@@ -1573,9 +1602,8 @@
         name,
         price,
         desc,
-        createdAt: Date.now() - (1000 * 60 * 60 * 24 * (80 - order)), // "newest" sorting support
-        icon: CAT_ICON[catId] || "fa-image",
-        image: "placeholder" // replace with URL later
+        createdAt: Date.now() - (1000 * 60 * 60 * 24 * (80 - order)),
+        icon: CAT_ICON[catId] || "fa-image"
       };
     }
 
@@ -1583,8 +1611,8 @@
      * STATE + STORAGE
      ***********************/
     const LS_KEY = "bhavna_cart_v1";
-    let cart = loadCart(); // {productId: qty}
-    let currentCategory = "all"; // categoryId or "all"
+    let cart = loadCart();
+    let currentCategory = "all";
 
     function loadCart(){
       try{
@@ -1594,9 +1622,7 @@
         return {};
       }
     }
-    function saveCart(){
-      localStorage.setItem(LS_KEY, JSON.stringify(cart));
-    }
+    function saveCart(){ localStorage.setItem(LS_KEY, JSON.stringify(cart)); }
 
     /***********************
      * DOM REFERENCES
@@ -1607,6 +1633,7 @@
     const searchInput = document.getElementById("searchInput");
     const sortSelect = document.getElementById("sortSelect");
     const cartCount = document.getElementById("cartCount");
+    const cartCountFloat = document.getElementById("cartCountFloat");
 
     // Drawer
     const drawer = document.getElementById("drawer");
@@ -1626,13 +1653,13 @@
 
     // Modal
     const modalOverlay = document.getElementById("modalOverlay");
+    const modalImgWrap = document.getElementById("modalImgWrap");
     const modalName = document.getElementById("modalName");
     const modalCat = document.getElementById("modalCat");
     const modalPrice = document.getElementById("modalPrice");
     const modalDesc = document.getElementById("modalDesc");
     const modalAddBtn = document.getElementById("modalAddBtn");
     const modalGoCartBtn = document.getElementById("modalGoCartBtn");
-
     let modalProductId = null;
 
     /***********************
@@ -1672,13 +1699,9 @@
       }
 
       const sort = sortSelect.value;
-      if(sort === "lowhigh"){
-        list.sort((a,b) => a.price - b.price);
-      }else if(sort === "highlow"){
-        list.sort((a,b) => b.price - a.price);
-      }else{
-        list.sort((a,b) => b.createdAt - a.createdAt);
-      }
+      if(sort === "lowhigh") list.sort((a,b) => a.price - b.price);
+      else if(sort === "highlow") list.sort((a,b) => b.price - a.price);
+      else list.sort((a,b) => b.createdAt - a.createdAt);
       return list;
     }
 
@@ -1686,10 +1709,16 @@
       const list = getFilteredProducts();
       activeCategoryName.textContent = currentCategory === "all" ? "All Categories" : categoryName(currentCategory);
 
-      productGrid.innerHTML = list.map(p => `
+      productGrid.innerHTML = list.map(p => {
+        const img = imgFor(p);
+        return `
         <div class="card">
-          <div class="img" aria-label="Product image placeholder">
-            <div class="ph"><i class="fa-solid ${p.icon}"></i></div>
+          <div class="img" aria-label="Product image">
+            ${img
+              ? `<img src="${img}" alt="${escapeHtml(p.name)}" loading="lazy" onerror="this.remove(); this.parentElement.querySelector('.ph').style.display='flex';">`
+              : ``
+            }
+            <div class="ph" style="display:${img ? "none" : "flex"}"><i class="fa-solid ${p.icon}"></i></div>
           </div>
           <div class="body">
             <p class="name">${escapeHtml(p.name)}</p>
@@ -1703,8 +1732,8 @@
               <button class="btn sm" onclick="openDetails('${p.id}')"><i class="fa-solid fa-eye"></i> Details</button>
             </div>
           </div>
-        </div>
-      `).join("");
+        </div>`;
+      }).join("");
     }
 
     function categoryName(catId){
@@ -1722,38 +1751,47 @@
       updateCartUI();
       toast("Added to cart");
     }
-
     function setQty(productId, qty){
       if(qty <= 0) delete cart[productId];
       else cart[productId] = qty;
       saveCart();
       updateCartUI();
     }
-
     function cartItems(){
       return Object.entries(cart).map(([id, qty]) => {
         const product = PRODUCTS.find(p => p.id === id);
         return product ? { product, qty } : null;
       }).filter(Boolean);
     }
-
     function cartSubtotal(){
       return cartItems().reduce((sum, it) => sum + it.product.price * it.qty, 0);
     }
 
     function updateCartCount(){
       const count = Object.values(cart).reduce((a,b) => a + b, 0);
+
       cartCount.textContent = count;
       cartCount.style.display = count ? "flex" : "none";
+
+      cartCountFloat.textContent = count;
+      cartCountFloat.style.display = count ? "flex" : "none";
     }
 
     function renderCart(){
       const items = cartItems();
       emptyCartHint.style.display = items.length ? "none" : "block";
 
-      cartItemsEl.innerHTML = items.map(({product, qty}) => `
+      cartItemsEl.innerHTML = items.map(({product, qty}) => {
+        const img = imgFor(product);
+        return `
         <div class="cart-item">
-          <div class="miniimg"><i class="fa-solid ${product.icon}"></i></div>
+          <div class="miniimg">
+            ${img
+              ? `<img src="${img}" alt="${escapeHtml(product.name)}" loading="lazy" onerror="this.remove(); this.parentElement.querySelector('.mi-ph').style.display='block';">`
+              : ``
+            }
+            <div class="mi-ph" style="display:${img ? "none" : "block"}"><i class="fa-solid ${product.icon}"></i></div>
+          </div>
           <div>
             <div class="ci-top">
               <div>
@@ -1775,8 +1813,8 @@
               </div>
             </div>
           </div>
-        </div>
-      `).join("");
+        </div>`;
+      }).join("");
 
       const sub = cartSubtotal();
       subtotalEl.textContent = `₹${sub}`;
@@ -1788,13 +1826,11 @@
       saveCart();
       updateCartUI();
     }
-
     function clearCart(){
       cart = {};
       saveCart();
       updateCartUI();
     }
-
     function updateCartUI(){
       updateCartCount();
       renderCart();
@@ -1804,14 +1840,11 @@
      * WHATSAPP INTEGRATION
      ***********************/
     function waUrl(message){
-      // wa.me requires encoded message
       return `https://wa.me/${BUSINESS.waNumber}?text=${encodeURIComponent(message)}`;
     }
-
     function openWhatsAppMessage(message){
       window.open(waUrl(message), "_blank", "noopener");
     }
-
     function quickHello(){
       const msg =
 `Hello ${BUSINESS.name}, I want to enquire about products and availability.
@@ -1876,27 +1909,39 @@ Please share details.`;
     }
 
     /***********************
-     * ROUTING / NAV (HASH)
+     * ✅ FIX 2: OPEN ALL works on first click
+     * - First show the section
+     * - Then render
+     * - Then scroll (after layout)
      ***********************/
-   function openCategory(catId){
-  currentCategory = catId;
-  renderProducts();
+    function showCatalogAndScroll(){
+      const section = document.getElementById("catalogSection");
+      section.classList.remove("catalog-hidden");
+      requestAnimationFrame(() => {
+        section.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    }
 
-  // Scroll exactly to product list (no extra empty space)
-  document.getElementById("catalogTop").scrollIntoView({ behavior: "smooth", block: "start" });
-     document.getElementById("catalogSection").classList.remove("catalog-hidden");
-}
+    function openCategory(catId){
+      currentCategory = catId;
+      showCatalogAndScroll();
+      renderProducts();
+      toast(`Showing ${categoryName(catId)}`);
+    }
+    window.openCategory = openCategory;
 
-function openAll(){
-  currentCategory = "all";
-  renderProducts();
-  document.getElementById("catalogTop").scrollIntoView({ behavior: "smooth", block: "start" });
-  document.getElementById("catalogSection").classList.remove("catalog-hidden");
-}
+    function openAll(){
+      currentCategory = "all";
+      showCatalogAndScroll();
+      renderProducts();
+      toast("Showing all products");
+    }
+    window.openAll = openAll;
+
     function handleHash(){
       const h = (location.hash || "#home").replace("#","");
       if(h === "catalog"){
-        // keep currentCategory
+        document.getElementById("catalogSection").classList.remove("catalog-hidden");
         renderProducts();
       }
     }
@@ -1913,6 +1958,12 @@ function openAll(){
       modalCat.textContent = categoryName(product.categoryId);
       modalPrice.textContent = `₹${product.price}`;
       modalDesc.textContent = product.desc;
+
+      // image in modal
+      const img = imgFor(product);
+      modalImgWrap.innerHTML = img
+        ? `<img src="${img}" alt="${escapeHtml(product.name)}" onerror="this.remove(); this.parentElement.innerHTML='<i class=\\'fa-solid fa-image\\'></i>';">`
+        : `<i class="fa-solid fa-image"></i>`;
 
       modalOverlay.classList.add("open");
       modalOverlay.setAttribute("aria-hidden","false");
@@ -1983,16 +2034,20 @@ Please share availability and details.`;
     function filterByOccasion(name){
       const cats = occasionMap[name] || [];
       currentCategory = "all";
-      location.hash = "#catalog";
-      renderProducts();
-      searchInput.value = ""; // reset
-      // Pre-filter by setting a query that matches categories
-      // Instead of forced filter, we set search to the occasion name so it feels intentional.
-      // Then we highlight relevant categories by filtering list to those cats.
+      document.getElementById("catalogSection").classList.remove("catalog-hidden");
+
       const list = PRODUCTS.filter(p => cats.includes(p.categoryId));
-      productGrid.innerHTML = list.sort((a,b)=>b.createdAt-a.createdAt).map(p => `
+      productGrid.innerHTML = list.sort((a,b)=>b.createdAt-a.createdAt).map(p => {
+        const img = imgFor(p);
+        return `
         <div class="card">
-          <div class="img"><div class="ph"><i class="fa-solid ${p.icon}"></i></div></div>
+          <div class="img">
+            ${img
+              ? `<img src="${img}" alt="${escapeHtml(p.name)}" loading="lazy" onerror="this.remove(); this.parentElement.querySelector('.ph').style.display='flex';">`
+              : ``
+            }
+            <div class="ph" style="display:${img ? "none" : "flex"}"><i class="fa-solid ${p.icon}"></i></div>
+          </div>
           <div class="body">
             <p class="name">${escapeHtml(p.name)}</p>
             <p class="desc">${escapeHtml(p.desc)}</p>
@@ -2005,10 +2060,12 @@ Please share availability and details.`;
               <button class="btn sm" onclick="openDetails('${p.id}')"><i class="fa-solid fa-eye"></i> Details</button>
             </div>
           </div>
-        </div>
-      `).join("");
+        </div>`;
+      }).join("");
 
-      window.scrollTo({ top: document.getElementById("catalogSection").offsetTop - 84, behavior: "smooth" });
+      requestAnimationFrame(() => {
+        document.getElementById("catalogSection").scrollIntoView({ behavior: "smooth", block:"start" });
+      });
       toast(`Showing ${name} picks`);
     }
 
@@ -2025,7 +2082,6 @@ Please share availability and details.`;
     }
 
     function toast(text){
-      // tiny toast with zero dependencies
       const t = document.createElement("div");
       t.textContent = text;
       t.style.position="fixed";
@@ -2061,8 +2117,8 @@ Please share availability and details.`;
      ***********************/
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // Buttons
     document.getElementById("openAllBtn").addEventListener("click", openAll);
+
     document.getElementById("backToCatsBtn").addEventListener("click", () => {
       window.scrollTo({ top: document.getElementById("categories").offsetTop - 84, behavior: "smooth" });
     });
@@ -2070,17 +2126,13 @@ Please share availability and details.`;
     document.getElementById("waNowBtn").addEventListener("click", quickHello);
     document.getElementById("footerWaBtn").addEventListener("click", quickHello);
 
-    // quick enquiry button
     document.getElementById("quickEnquiryBtn").addEventListener("click", () => {
       window.scrollTo({ top: document.getElementById("enquiry").offsetTop - 84, behavior: "smooth" });
       setTimeout(()=> enqName.focus(), 250);
     });
 
-    // visit section WhatsApp + footer WhatsApp
     document.getElementById("visitWaBtn").addEventListener("click", (e)=>{ e.preventDefault(); quickHello(); });
     document.getElementById("footerWaLink").addEventListener("click", (e)=>{ e.preventDefault(); quickHello(); });
-
-    // Floating WhatsApp
     document.getElementById("floatWaBtn").addEventListener("click", (e)=>{ e.preventDefault(); quickHello(); });
 
     // Cart open buttons
@@ -2088,11 +2140,13 @@ Please share availability and details.`;
     document.getElementById("openCartBtn2").addEventListener("click", openCart);
     document.getElementById("openCartBtn3").addEventListener("click", openCart);
 
+    // ✅ NEW floating cart button open
+    document.getElementById("floatCartBtn").addEventListener("click", openCart);
+
     // Cart close
     document.getElementById("closeCartBtn").addEventListener("click", closeCart);
     drawerOverlay.addEventListener("click", closeCart);
 
-    // Cart actions
     clearCartBtn.addEventListener("click", () => { clearCart(); toast("Cart cleared"); });
 
     fulfillment.addEventListener("change", () => {
@@ -2108,8 +2162,7 @@ Please share availability and details.`;
 
     placeOrderBtn.addEventListener("click", () => {
       if(!validateCheckout()) return;
-      const msg = buildOrderMessage();
-      openWhatsAppMessage(msg);
+      openWhatsAppMessage(buildOrderMessage());
     });
 
     // Search/sort
@@ -2125,26 +2178,19 @@ Please share availability and details.`;
     modalOverlay.addEventListener("click", (e) => { if(e.target === modalOverlay) closeModal(); });
     document.addEventListener("keydown", (e)=>{ if(e.key === "Escape"){ closeModal(); closeCart(); } });
 
-    modalAddBtn.addEventListener("click", () => {
-      if(modalProductId) addToCart(modalProductId, 1);
-    });
-    modalGoCartBtn.addEventListener("click", () => {
-      closeModal();
-      openCart();
-    });
+    modalAddBtn.addEventListener("click", () => { if(modalProductId) addToCart(modalProductId, 1); });
+    modalGoCartBtn.addEventListener("click", () => { closeModal(); openCart(); });
 
     // Occasion clicks
     document.querySelectorAll("#occasionGrid .oc").forEach(el => {
       el.addEventListener("click", () => filterByOccasion(el.dataset.occasion));
     });
 
-    // Go to catalog from enquiry section
     document.getElementById("goToCatalogBtn").addEventListener("click", () => {
       location.hash = "#categories";
       window.scrollTo({ top: document.getElementById("categories").offsetTop - 84, behavior: "smooth" });
     });
 
-    // Hash routing
     window.addEventListener("hashchange", handleHash);
 
     /***********************
@@ -2165,8 +2211,6 @@ Please share availability and details.`;
       });
     }, { threshold: 0.12 });
     document.querySelectorAll(".reveal").forEach(el => io.observe(el));
-
   </script>
 </body>
 </html>
-
