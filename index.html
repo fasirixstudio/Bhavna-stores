@@ -855,12 +855,22 @@
     }
     .float-wa:hover{ transform: translateY(-3px); box-shadow: 0 24px 60px rgba(0,0,0,.22); }
 
-    /* Reveal animations */
-    .reveal{
-      opacity:0;
-      transform: translateY(14px);
-      transition: opacity .5s ease, transform .5s ease;
-    }
+   /* Reveal animations - SAFE DEFAULT (no blank screens) */
+.reveal{
+  opacity:1;
+  transform:none;
+}
+
+/* Only animate when JS adds .anim */
+.reveal.anim{
+  opacity:0;
+  transform: translateY(14px);
+  transition: opacity .5s ease, transform .5s ease;
+}
+.reveal.anim.show{
+  opacity:1;
+  transform: translateY(0);
+}
     .reveal.show{ opacity:1; transform: translateY(0); }
 
     /* Responsive */
@@ -2137,16 +2147,31 @@ Please share availability and details.`;
     renderCategoryTiles();
     updateCartUI();
 
-    // reveal animations
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach(en => {
-        if(en.isIntersecting){
-          en.target.classList.add("show");
-          io.unobserve(en.target);
-        }
-      });
-    }, { threshold: 0.12 });
-    document.querySelectorAll(".reveal").forEach(el => io.observe(el));
+   // reveal animations (no blank page issue)
+const revealEls = document.querySelectorAll(".reveal");
+revealEls.forEach(el => el.classList.add("anim"));
+
+if ("IntersectionObserver" in window) {
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(en => {
+      if(en.isIntersecting){
+        en.target.classList.add("show");
+        io.unobserve(en.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+} else {
+  // fallback: show everything
+  revealEls.forEach(el => el.classList.add("show"));
+}
+
+// Also ensure first screen shows immediately
+requestAnimationFrame(() => {
+  revealEls.forEach(el => {
+    if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add("show");
+  });
+});
 
   </script>
 </body>
