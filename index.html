@@ -862,7 +862,47 @@
       transition: transform .16s ease, box-shadow .16s ease;
     }
     .float-wa:hover{ transform: translateY(-3px); box-shadow: 0 24px 60px rgba(0,0,0,.22); }
+.float-cart-mini{
+  position: fixed;
+  right: 16px;
+  bottom: 86px;   /* sits above WhatsApp */
+  width: 54px;
+  height: 54px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
+  background: rgba(255,255,255,.90);
+  border: 1px solid rgba(27,26,25,.12);
+  box-shadow: 0 18px 44px rgba(0,0,0,.18);
+  backdrop-filter: blur(10px);
+  color: rgba(74,15,30,.95);
+  z-index: 75;
+}
+
+.float-cart-mini:hover{
+  transform: translateY(-3px);
+  transition: transform .16s ease;
+}
+
+.float-badge{
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  min-width: 20px;
+  height: 20px;
+  padding: 0 6px;
+  border-radius: 999px;
+  background: rgba(74,15,30,.95);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid rgba(251,243,231,.9);
+}
     /* ✅ NEW: Floating Cart button ABOVE WhatsApp */
     .float-cart{
       position:fixed;
@@ -1343,7 +1383,11 @@
     <i class="fa-solid fa-bag-shopping"></i>
     <div class="cart-count" id="cartCountFloat">0</div>
   </button>
-
+<!-- Floating Cart -->
+<a class="float-cart-mini" id="floatCartBtn" href="#" aria-label="Open Cart">
+  <i class="fa-solid fa-bag-shopping"></i>
+  <span class="float-badge" id="floatCartCount">0</span>
+</a>
   <!-- Floating WhatsApp -->
   <a class="float-wa" id="floatWaBtn" href="#" aria-label="Chat on WhatsApp">
     <i class="fa-brands fa-whatsapp" style="font-size:18px;"></i>
@@ -1767,16 +1811,19 @@
       return cartItems().reduce((sum, it) => sum + it.product.price * it.qty, 0);
     }
 
-    function updateCartCount(){
-      const count = Object.values(cart).reduce((a,b) => a + b, 0);
+ function updateCartCount(){
+  const count = Object.values(cart).reduce((a,b) => a + b, 0);
+  cartCount.textContent = count;
+  cartCount.style.display = count ? "flex" : "none";
 
-      cartCount.textContent = count;
-      cartCount.style.display = count ? "flex" : "none";
+  const floatCount = document.getElementById("floatCartCount");
+  const floatBtn = document.getElementById("floatCartBtn");
 
-      cartCountFloat.textContent = count;
-      cartCountFloat.style.display = count ? "flex" : "none";
-    }
-
+  if(floatCount && floatBtn){
+    floatCount.textContent = count;
+    floatBtn.style.display = count ? "flex" : "none";
+  }
+}
     function renderCart(){
       const items = cartItems();
       emptyCartHint.style.display = items.length ? "none" : "block";
@@ -2131,6 +2178,14 @@ Please share availability and details.`;
       setTimeout(()=> enqName.focus(), 250);
     });
 
+    // Floating Cart button
+const floatCartBtn = document.getElementById("floatCartBtn");
+if(floatCartBtn){
+  floatCartBtn.addEventListener("click", function(e){
+    e.preventDefault();
+    openCart();
+  });
+}
     document.getElementById("visitWaBtn").addEventListener("click", (e)=>{ e.preventDefault(); quickHello(); });
     document.getElementById("footerWaLink").addEventListener("click", (e)=>{ e.preventDefault(); quickHello(); });
     document.getElementById("floatWaBtn").addEventListener("click", (e)=>{ e.preventDefault(); quickHello(); });
