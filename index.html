@@ -1516,7 +1516,7 @@
      * PRODUCT DATA (70)
      ***********************/
     const CATEGORIES = [
-      { id:"celebration", name:"Celebration Items", icon:"fa-party-horn", hint:"Balloons, decor & more" },
+      { id:"celebration", name:"Celebration Items", icon:"fa-light fa-party-horn", hint:"Balloons, decor & more" },
       { id:"cosmetics", name:"Cosmetics", icon:"fa-wand-magic-sparkles", hint:"Daily essentials" },
       { id:"school", name:"School Items", icon:"fa-book", hint:"Stationery & bags" },
       { id:"marriage", name:"Marriage Items", icon:"fa-ring", hint:"Wedding essentials" },
@@ -1967,14 +1967,18 @@ Please share details.`;
     }
     window.openCategory = openCategory;
 
-    function openAll(){
-      currentCategory = "all";
-      searchInput.value = "";
-      sortSelect.value = "newest";
-      renderProducts();
-      showCatalog();
-      scrollToCatalog();
-    }
+ function openAll(){
+  currentCategory = "all";
+
+  // FORCE SHOW CATALOG
+  document.getElementById("catalogSection").classList.remove("catalog-hidden");
+
+  renderProducts();
+
+  // Smooth scroll to products (NOT empty top)
+  document.getElementById("catalogSection")
+    .scrollIntoView({ behavior: "smooth", block: "start" });
+}
 
     function handleHash(){
       const h = (location.hash || "#home").replace("#","");
