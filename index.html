@@ -911,6 +911,32 @@
       .products{ grid-template-columns: 1fr; }
       .contact-cards{ grid-template-columns: 1fr; }
     }
+    @media (max-width: 560px){
+  /* Reduce overall vertical spacing on mobile */
+  section{ padding: 22px 0; }
+.catalog-hidden { display: none; }
+  /* Make categories look perfect: 1 column */
+  .tiles{ grid-template-columns: 1fr; }
+   /* Less gap between categories and catalog */
+#categories{ padding-bottom: 12px; }
+#catalogSection{ padding-top: 12px !important; }
+  /* Make tile content fit nicely */
+  .tile{
+    padding: 12px;
+    min-height: 72px;
+  }
+  .tile i{
+    width: 42px; height: 42px;
+    border-radius: 14px;
+  }
+  .tile .go{
+    width: 36px; height: 36px;
+    border-radius: 14px;
+  }
+
+  /* Reduce heading spacing */
+  .section-head{ margin-bottom: 12px; }
+}
   </style>
 </head>
 
@@ -1028,7 +1054,7 @@
   </section>
 
   <!-- CATALOG (CATEGORY VIEW) -->
-  <section id="catalogSection" style="padding-top: 0;">
+  <section id="catalogSection" class="catalog-hidden" style="padding-top: 0;">
     <div class="container">
       <div class="catalog-wrap reveal">
         <div class="catalog-top">
@@ -1055,7 +1081,8 @@
           </div>
         </div>
 
-        <div class="products" id="productGrid"></div>
+        <div id="catalogTop"></div>
+     <div class="products" id="productGrid"></div>
       </div>
     </div>
   </section>
@@ -1851,22 +1878,21 @@ Please share details.`;
     /***********************
      * ROUTING / NAV (HASH)
      ***********************/
-    function openCategory(catId){
-      currentCategory = catId;
-      // Nice UX: jump to catalog section
-      location.hash = "#catalog";
-      renderProducts();
-      window.scrollTo({ top: document.getElementById("catalogSection").offsetTop - 84, behavior: "smooth" });
-    }
-    window.openCategory = openCategory;
+   function openCategory(catId){
+  currentCategory = catId;
+  renderProducts();
 
-    function openAll(){
-      currentCategory = "all";
-      location.hash = "#catalog";
-      renderProducts();
-      window.scrollTo({ top: document.getElementById("catalogSection").offsetTop - 84, behavior: "smooth" });
-    }
+  // Scroll exactly to product list (no extra empty space)
+  document.getElementById("catalogTop").scrollIntoView({ behavior: "smooth", block: "start" });
+     document.getElementById("catalogSection").classList.remove("catalog-hidden");
+}
 
+function openAll(){
+  currentCategory = "all";
+  renderProducts();
+  document.getElementById("catalogTop").scrollIntoView({ behavior: "smooth", block: "start" });
+  document.getElementById("catalogSection").classList.remove("catalog-hidden");
+}
     function handleHash(){
       const h = (location.hash || "#home").replace("#","");
       if(h === "catalog"){
