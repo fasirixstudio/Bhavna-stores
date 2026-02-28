@@ -2173,6 +2173,19 @@ requestAnimationFrame(() => {
     if (el.getBoundingClientRect().top < window.innerHeight) el.classList.add("show");
   });
 });
+    function openCategory(catId){
+  currentCategory = catId;
+  renderProducts();
+  document.getElementById("catalogSection").style.display = "block";
+  document.getElementById("catalogSection").scrollIntoView({ behavior: "smooth" });
+}
+
+function openAll(){
+  currentCategory = "all";
+  renderProducts();
+  document.getElementById("catalogSection").style.display = "block";
+  document.getElementById("catalogSection").scrollIntoView({ behavior: "smooth" });
+}
 
   </script>
 </body>
