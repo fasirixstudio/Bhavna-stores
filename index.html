@@ -58,18 +58,21 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-  <!-- Icons -->
+  <!-- Icons (still used for a few UI icons like cart, whatsapp, etc) -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+
+  <!-- Favicon + Logo (inline SVG) -->
+  <link rel="icon" type="image/svg+xml"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='128' height='128' viewBox='0 0 128 128'%3E%3Cdefs%3E%3CradialGradient id='g' cx='30%25' cy='25%25' r='90%25'%3E%3Cstop offset='0' stop-color='%23caa24a'/%3E%3Cstop offset='1' stop-color='%234a0f1e'/%3E%3C/radialGradient%3E%3C/defs%3E%3Crect x='8' y='8' width='112' height='112' rx='26' fill='url(%23g)'/%3E%3Ctext x='64' y='78' text-anchor='middle' font-family='Playfair Display' font-size='52' fill='white'%3EBS%3C/text%3E%3C/svg%3E"/>
 
   <style>
     :root{
-      --bg: #fbf3e7;           /* warm cream */
+      --bg: #fbf3e7;
       --panel: rgba(255,255,255,.72);
-      --panelSolid: #fffaf2;
-      --text: #1b1a19;         /* charcoal */
+      --text: #1b1a19;
       --muted: rgba(27,26,25,.70);
-      --maroon: #4a0f1e;       /* deep maroon */
-      --gold: #caa24a;         /* gold accent */
+      --maroon: #4a0f1e;
+      --gold: #caa24a;
       --line: rgba(27,26,25,.10);
       --shadow: 0 16px 50px rgba(0,0,0,.10);
       --shadow2: 0 10px 30px rgba(0,0,0,.10);
@@ -92,7 +95,7 @@
       overflow-x:hidden;
     }
 
-    /* subtle Indian pattern (very minimal) */
+    /* subtle Indian pattern */
     body:before{
       content:"";
       position:fixed; inset:0;
@@ -105,6 +108,9 @@
 
     a{ color:inherit; text-decoration:none; }
     .container{ width:min(var(--max), calc(100% - 40px)); margin:0 auto; }
+
+    .h-title{ font-family: "Playfair Display", serif; letter-spacing: .2px; }
+
     .btn{
       display:inline-flex; align-items:center; justify-content:center;
       gap:10px;
@@ -130,17 +136,13 @@
       border-color: rgba(202,162,74,.35);
       color: #fff;
     }
-    .btn.primary:hover{ box-shadow: 0 18px 36px rgba(74,15,30,.25); }
     .btn.gold{
       background: linear-gradient(135deg, rgba(202,162,74,.98), rgba(202,162,74,.80));
       border-color: rgba(74,15,30,.15);
       color: #2b1f08;
     }
-    .btn.ghost{
-      background: transparent;
-      border: 1px solid rgba(27,26,25,.18);
-      box-shadow:none;
-    }
+    .btn.ghost{ background: transparent; border: 1px solid rgba(27,26,25,.18); box-shadow:none; }
+
     .pill{
       display:inline-flex; align-items:center; gap:8px;
       padding:8px 12px;
@@ -153,10 +155,6 @@
       box-shadow: 0 10px 25px rgba(0,0,0,.06);
     }
     .muted{ color: var(--muted); }
-    .h-title{
-      font-family: "Playfair Display", serif;
-      letter-spacing: .2px;
-    }
 
     /* Header */
     header{
@@ -174,27 +172,23 @@
       display:flex; align-items:center; gap:12px;
       min-width: 220px;
     }
-    .brand-badge{
-      width:44px; height:44px; border-radius:14px;
-      background: radial-gradient(circle at 30% 30%, rgba(202,162,74,.95), rgba(202,162,74,.55)) ,
-                  linear-gradient(135deg, rgba(74,15,30,.95), rgba(74,15,30,.80));
+
+    /* NEW LOGO */
+    .logo{
+      width:44px; height:44px;
+      border-radius:14px;
+      overflow:hidden;
       box-shadow: 0 16px 40px rgba(74,15,30,.18);
       border:1px solid rgba(255,255,255,.35);
-      position:relative;
-      overflow:hidden;
+      flex: 0 0 auto;
+      background: #fff;
+      display:flex; align-items:center; justify-content:center;
     }
-    .brand-badge:after{
-      content:"";
-      position:absolute; inset:-20px;
-      background: radial-gradient(circle at 20% 20%, rgba(255,255,255,.25), transparent 50%);
-      transform: rotate(12deg);
-    }
-    .brand h1{
-      margin:0;
-      font-size: 18px;
-      line-height: 1.05;
-    }
+    .logo svg{ width:100%; height:100%; display:block; }
+
+    .brand h1{ margin:0; font-size: 18px; line-height: 1.05; }
     .brand small{ display:block; margin-top:2px; font-size:12px; color:var(--muted); font-weight:500; }
+
     .navlinks{
       display:flex; align-items:center; gap:10px;
       flex-wrap:wrap;
@@ -214,9 +208,8 @@
       background: rgba(255,255,255,.55);
       box-shadow: 0 10px 25px rgba(0,0,0,.06);
     }
-    .nav-right{
-      display:flex; align-items:center; gap:10px;
-    }
+    .nav-right{ display:flex; align-items:center; gap:10px; }
+
     .iconbtn{
       width:44px; height:44px; border-radius:14px;
       border:1px solid rgba(27,26,25,.12);
@@ -242,9 +235,7 @@
     }
 
     /* Hero */
-    .hero{
-      padding: 28px 0 10px;
-    }
+    .hero{ padding: 28px 0 8px; }
     .hero-grid{
       display:grid;
       grid-template-columns: 1.15fr .85fr;
@@ -278,9 +269,7 @@
       height:100%;
       gap: 14px;
     }
-    .hero-top{
-      display:flex; gap:10px; flex-wrap:wrap;
-    }
+    .hero-top{ display:flex; gap:10px; flex-wrap:wrap; }
     .hero h2{
       margin: 0;
       font-size: 42px;
@@ -318,13 +307,8 @@
       display:flex; align-items:flex-start; justify-content:space-between; gap:10px;
     }
     .side-card h3{ margin:0; font-size:18px; }
-    .side-card .meta{
-      font-size:13px; color:var(--muted);
-      line-height:1.4;
-    }
-    .badges{
-      display:flex; flex-wrap:wrap; gap:10px;
-    }
+    .side-card .meta{ font-size:13px; color:var(--muted); line-height:1.4; }
+    .badges{ display:flex; flex-wrap:wrap; gap:10px; }
     .statgrid{
       display:grid;
       grid-template-columns: 1fr 1fr;
@@ -342,24 +326,16 @@
     .stat span{ display:block; font-size:12px; color:var(--muted); margin-top:4px; }
 
     /* Sections */
-    section{ padding: 34px 0; }
+    section{ padding: 26px 0; } /* reduced to remove big empty spaces */
     .section-head{
       display:flex; align-items:flex-end; justify-content:space-between;
       gap: 14px;
-      margin-bottom: 16px;
+      margin-bottom: 14px;
     }
-    .section-head h3{
-      margin:0;
-      font-size: 28px;
-    }
-    .section-head p{
-      margin:0;
-      max-width: 60ch;
-      font-size: 13px;
-      color: var(--muted);
-    }
+    .section-head h3{ margin:0; font-size: 28px; }
+    .section-head p{ margin:0; max-width: 60ch; font-size: 13px; color: var(--muted); }
 
-    /* Category tiles */
+    /* Category tiles (NOW using images) */
     .tiles{
       display:grid;
       grid-template-columns: repeat(4, 1fr);
@@ -394,13 +370,15 @@
       pointer-events:none;
     }
     .tile .left{ position:relative; display:flex; align-items:center; gap:12px; }
-    .tile i{
+    .tile .cimg{
       width:44px; height:44px; border-radius:14px;
-      display:flex; align-items:center; justify-content:center;
-      background: rgba(74,15,30,.08);
+      overflow:hidden;
       border:1px solid rgba(74,15,30,.10);
-      color: rgba(74,15,30,.92);
+      background: rgba(255,255,255,.65);
+      box-shadow: 0 10px 25px rgba(0,0,0,.08);
+      flex: 0 0 auto;
     }
+    .tile .cimg img{ width:100%; height:100%; object-fit:cover; display:block; }
     .tile h4{ margin:0; font-size: 14px; }
     .tile small{ display:block; margin-top:2px; color:var(--muted); font-weight:500; }
     .tile .go{
@@ -411,7 +389,12 @@
       background: rgba(255,255,255,.60);
     }
 
+    /* IMPORTANT: remove space between categories and catalog */
+    #categories{ padding-bottom: 10px; }
+    #catalogSection{ padding-top: 10px; }
+
     /* Catalog */
+    .catalog-hidden{ display:none; }
     .catalog-wrap{
       border-radius: var(--radius2);
       background: linear-gradient(180deg, rgba(255,255,255,.78), rgba(255,255,255,.62));
@@ -434,6 +417,7 @@
       font-weight:600;
     }
     .crumb b{ color: rgba(27,26,25,.88); }
+
     .controls{
       display:flex; gap:10px; flex-wrap:wrap; justify-content:flex-end; align-items:center;
     }
@@ -464,6 +448,21 @@
       color: rgba(27,26,25,.88);
       cursor:pointer;
     }
+
+    /* Loading bar (fast feeling) */
+    .loading-bar{
+      display:none;
+      padding:12px 14px;
+      margin: 12px 14px 0;
+      border-radius: 16px;
+      border: 1px solid rgba(27,26,25,.10);
+      background: rgba(255,255,255,.70);
+      box-shadow: 0 10px 25px rgba(0,0,0,.06);
+      font-weight: 800;
+      color: rgba(27,26,25,.80);
+    }
+    .loading-bar.show{ display:block; }
+
     .products{
       display:grid;
       grid-template-columns: repeat(4, 1fr);
@@ -484,27 +483,25 @@
       border-color: rgba(202,162,74,.45);
       box-shadow: 0 18px 44px rgba(0,0,0,.12);
     }
+
+    /* PRODUCT IMAGE (REAL) */
     .img{
-      height: 150px;
-      background:
-        linear-gradient(135deg, rgba(202,162,74,.18), rgba(74,15,30,.14)),
-        radial-gradient(400px 170px at 30% 20%, rgba(255,255,255,.40), transparent 55%);
-      display:flex; align-items:center; justify-content:center;
-      position:relative;
-    }
-    .img .ph{
-      width: 64px; height: 64px;
-      border-radius: 18px;
-      display:flex; align-items:center; justify-content:center;
+      height: 160px;
+      overflow:hidden;
+      border-bottom:1px solid rgba(27,26,25,.08);
       background: rgba(255,255,255,.55);
-      border:1px solid rgba(255,255,255,.55);
-      box-shadow: 0 16px 40px rgba(0,0,0,.10);
-      color: rgba(74,15,30,.92);
-      font-size: 26px;
     }
-    .card .body{
-      padding: 12px;
+    .img img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      transform: scale(1);
+      transition: transform .25s ease;
     }
+    .card:hover .img img{ transform: scale(1.05); }
+
+    .card .body{ padding: 12px; }
     .name{
       margin:0;
       font-weight:800;
@@ -522,14 +519,8 @@
       display:flex; align-items:center; justify-content:space-between;
       gap: 10px;
     }
-    .price{
-      font-weight:900;
-      color: rgba(74,15,30,.95);
-    }
-    .card .actions{
-      display:flex; gap:8px;
-      margin-top: 10px;
-    }
+    .price{ font-weight:900; color: rgba(74,15,30,.95); }
+    .card .actions{ display:flex; gap:8px; margin-top: 10px; }
     .btn.sm{ padding:10px 12px; border-radius: 14px; font-size: 13px; }
     .btn.sm i{ font-size: 14px; }
 
@@ -548,11 +539,7 @@
       padding: 18px;
       overflow:hidden;
     }
-    .list{
-      display:grid;
-      gap: 10px;
-      margin-top: 10px;
-    }
+    .list{ display:grid; gap: 10px; margin-top: 10px; }
     .li{
       display:flex; gap:12px;
       padding: 12px;
@@ -594,11 +581,7 @@
     .oc i{ color: rgba(74,15,30,.90); }
 
     /* FAQs */
-    .faq{
-      display:grid;
-      gap: 10px;
-      margin-top: 12px;
-    }
+    .faq{ display:grid; gap: 10px; margin-top: 12px; }
     details{
       border-radius: 18px;
       background: rgba(255,255,255,.62);
@@ -632,6 +615,7 @@
       background: rgba(255,255,255,.6);
     }
     iframe{ width:100%; height:100%; border:0; display:block; }
+
     .contact-cards{
       display:grid;
       grid-template-columns: 1fr 1fr;
@@ -715,11 +699,8 @@
       background: rgba(255,255,255,.70);
     }
     .drawer-head h3{ margin:0; font-size: 16px; }
-    .drawer-body{
-      padding: 14px;
-      overflow:auto;
-      flex:1;
-    }
+    .drawer-body{ padding: 14px; overflow:auto; flex:1; }
+
     .cart-item{
       display:grid;
       grid-template-columns: 54px 1fr;
@@ -733,12 +714,12 @@
     }
     .miniimg{
       width:54px; height:54px; border-radius:16px;
-      background: linear-gradient(135deg, rgba(202,162,74,.20), rgba(74,15,30,.15));
-      display:flex; align-items:center; justify-content:center;
+      overflow:hidden;
       border:1px solid rgba(27,26,25,.10);
-      color: rgba(74,15,30,.92);
-      font-size: 18px;
+      background: rgba(255,255,255,.65);
     }
+    .miniimg img{ width:100%; height:100%; object-fit:cover; display:block; }
+
     .ci-top{
       display:flex; align-items:flex-start; justify-content:space-between; gap: 10px;
     }
@@ -757,11 +738,7 @@
       transition: .15s ease;
     }
     .qbtn:hover{ border-color: rgba(202,162,74,.45); transform: translateY(-1px); }
-    .qval{
-      min-width: 28px;
-      text-align:center;
-      font-weight:900;
-    }
+    .qval{ min-width: 28px; text-align:center; font-weight:900; }
 
     .drawer-foot{
       border-top: 1px solid rgba(27,26,25,.10);
@@ -770,11 +747,9 @@
       display:grid;
       gap: 10px;
     }
-    .totals{
-      display:flex; align-items:center; justify-content:space-between;
-      font-weight:900;
-    }
+    .totals{ display:flex; align-items:center; justify-content:space-between; font-weight:900; }
     .totals span{ color: rgba(74,15,30,.95); }
+
     .form{
       display:grid;
       gap: 10px;
@@ -852,18 +827,15 @@
     .bigimg{
       border-radius: 20px;
       min-height: 220px;
-      background: linear-gradient(135deg, rgba(202,162,74,.22), rgba(74,15,30,.16));
+      overflow:hidden;
       border:1px solid rgba(27,26,25,.10);
-      display:flex; align-items:center; justify-content:center;
       box-shadow: 0 16px 40px rgba(0,0,0,.10);
+      background: rgba(255,255,255,.6);
     }
-    .bigimg i{ font-size: 42px; color: rgba(74,15,30,.92); }
+    .bigimg img{ width:100%; height:100%; object-fit:cover; display:block; }
     .modal-body h4{ margin:0; font-size: 22px; }
     .modal-body .p{ margin:8px 0 0; color: var(--muted); font-size: 13px; line-height:1.6; }
-    .modal-body .meta{
-      margin-top: 10px;
-      display:flex; gap: 10px; flex-wrap:wrap;
-    }
+    .modal-body .meta{ margin-top: 10px; display:flex; gap: 10px; flex-wrap:wrap; }
 
     /* Floating WhatsApp */
     .float-wa{
@@ -889,10 +861,7 @@
       transform: translateY(14px);
       transition: opacity .5s ease, transform .5s ease;
     }
-    .reveal.show{
-      opacity:1;
-      transform: translateY(0);
-    }
+    .reveal.show{ opacity:1; transform: translateY(0); }
 
     /* Responsive */
     @media (max-width: 980px){
@@ -906,37 +875,28 @@
       .brand{ min-width: unset; }
       .navlinks{ display:none; }
     }
+    @media (max-width: 560px){
+      section{ padding: 18px 0; } /* tighter on mobile */
+      .tiles{ grid-template-columns: 1fr; }
+      .tile{ padding: 12px; min-height: 72px; }
+      .tile .cimg{ width: 42px; height: 42px; border-radius: 14px; }
+      .tile .go{ width: 36px; height: 36px; border-radius: 14px; }
+      .section-head{ margin-bottom: 12px; }
+      #categories{ padding-bottom: 6px; }
+      #catalogSection{ padding-top: 6px; }
+    }
     @media (max-width: 420px){
       .hero h2{ font-size: 34px; }
       .products{ grid-template-columns: 1fr; }
       .contact-cards{ grid-template-columns: 1fr; }
     }
-    @media (max-width: 560px){
-  /* Reduce overall vertical spacing on mobile */
-  section{ padding: 22px 0; }
-.catalog-hidden { display: none; }
-  /* Make categories look perfect: 1 column */
-  .tiles{ grid-template-columns: 1fr; }
-   /* Less gap between categories and catalog */
-#categories{ padding-bottom: 12px; }
-#catalogSection{ padding-top: 12px !important; }
-  /* Make tile content fit nicely */
-  .tile{
-    padding: 12px;
-    min-height: 72px;
-  }
-  .tile i{
-    width: 42px; height: 42px;
-    border-radius: 14px;
-  }
-  .tile .go{
-    width: 36px; height: 36px;
-    border-radius: 14px;
-  }
 
-  /* Reduce heading spacing */
-  .section-head{ margin-bottom: 12px; }
-}
+    /* performance: reduce hover transforms on small phones */
+    @media (max-width: 560px){
+      .card, .tile { transition: none !important; }
+      .card:hover, .tile:hover { transform: none !important; }
+      .card:hover .img img{ transform:none !important; }
+    }
   </style>
 </head>
 
@@ -945,7 +905,19 @@
     <div class="container">
       <div class="nav">
         <a class="brand" href="#home" aria-label="Bhavna Stores Home">
-          <div class="brand-badge" aria-hidden="true"></div>
+          <div class="logo" aria-hidden="true">
+            <!-- Premium Monogram Logo -->
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+              <defs>
+                <radialGradient id="g" cx="30%" cy="25%" r="90%">
+                  <stop offset="0" stop-color="#caa24a"/>
+                  <stop offset="1" stop-color="#4a0f1e"/>
+                </radialGradient>
+              </defs>
+              <rect x="8" y="8" width="112" height="112" rx="26" fill="url(#g)"/>
+              <text x="64" y="78" text-anchor="middle" font-family="Playfair Display" font-size="52" fill="white">BS</text>
+            </svg>
+          </div>
           <div>
             <h1 class="h-title">Bhavna Stores</h1>
             <small>Akola • Catalog + WhatsApp Orders</small>
@@ -1053,8 +1025,8 @@
     </div>
   </section>
 
-  <!-- CATALOG (CATEGORY VIEW) -->
-  <section id="catalogSection" class="catalog-hidden" style="padding-top: 0;">
+  <!-- CATALOG (opens immediately after click; no big space) -->
+  <section id="catalogSection" class="catalog-hidden">
     <div class="container">
       <div class="catalog-wrap reveal">
         <div class="catalog-top">
@@ -1081,8 +1053,9 @@
           </div>
         </div>
 
+        <div class="loading-bar" id="loadingBar"><i class="fa-solid fa-spinner fa-spin"></i> Loading products…</div>
         <div id="catalogTop"></div>
-     <div class="products" id="productGrid"></div>
+        <div class="products" id="productGrid"></div>
       </div>
     </div>
   </section>
@@ -1123,7 +1096,7 @@
           <div class="section-head" style="margin-bottom:10px;">
             <div>
               <h3 class="h-title" style="font-size:26px;">Shop by Occasion</h3>
-              <p>Tap an occasion to instantly filter relevant products in the catalog.</p>
+              <p>Tap an occasion to instantly show relevant products in the catalog.</p>
             </div>
           </div>
 
@@ -1194,7 +1167,6 @@
         </div>
 
         <div class="map reveal" aria-label="Google map embed">
-          <!-- Using coordinates embed -->
           <iframe
             loading="lazy"
             referrerpolicy="no-referrer-when-downgrade"
@@ -1421,7 +1393,7 @@
         <button class="iconbtn" id="closeModalBtn" aria-label="Close details"><i class="fa-solid fa-xmark"></i></button>
       </div>
       <div class="modal-body">
-        <div class="bigimg"><i class="fa-solid fa-image"></i></div>
+        <div class="bigimg"><img id="modalImg" alt="Product image" src="" loading="lazy"></div>
         <div>
           <h4 class="h-title" id="modalName">—</h4>
           <div class="meta">
@@ -1434,7 +1406,7 @@
             <button class="btn" id="modalGoCartBtn"><i class="fa-solid fa-arrow-right"></i> Open Cart</button>
           </div>
           <div class="muted" style="margin-top:10px; font-size:12px; font-weight:600;">
-            Note: Images are clean placeholders. Replace with your real product photos anytime.
+            Note: Replace image URLs with your real product photos anytime.
           </div>
         </div>
       </div>
@@ -1447,7 +1419,7 @@
      ***********************/
     const BUSINESS = {
       name: "Bhavna Stores",
-      waNumber: "919422959707", // wa.me format (country code + number, no + or spaces)
+      waNumber: "919422959707",
       phoneDisplay: "+91 94229 59707",
       instagram: "https://www.instagram.com/bhawana.stores/",
       mapsLink: "https://maps.app.goo.gl/Jkdmqahzqi86f1bM7?g_st=aw",
@@ -1456,30 +1428,30 @@
     };
 
     /***********************
-     * PRODUCT DATA (70)
+     * IMAGE HELPERS (FAST PLACEHOLDERS)
+     * Replace these URLs with your real images later.
+     ***********************/
+    function imgForProduct(id){
+      // stable placeholder image per product (fast + consistent)
+      return `https://picsum.photos/seed/bhavna-${encodeURIComponent(id)}/800/600`;
+    }
+    function imgForCategory(catId){
+      return `https://picsum.photos/seed/bhavna-cat-${encodeURIComponent(catId)}/200/200`;
+    }
+
+    /***********************
+     * CATEGORIES + PRODUCTS
      ***********************/
     const CATEGORIES = [
-      { id:"celebration", name:"Celebration Items", icon:"fa-party-horn", hint:"Balloons, decor & more" },
-      { id:"cosmetics", name:"Cosmetics", icon:"fa-wand-magic-sparkles", hint:"Daily essentials" },
-      { id:"school", name:"School Items", icon:"fa-book", hint:"Stationery & bags" },
-      { id:"marriage", name:"Marriage Items", icon:"fa-ring", hint:"Wedding essentials" },
-      { id:"handcraft", name:"Handcraft", icon:"fa-paintbrush", hint:"Handmade & DIY" },
-      { id:"gifts", name:"Gifts", icon:"fa-gift", hint:"Thoughtful gifting" },
-      { id:"jewellery", name:"Jewellery", icon:"fa-gem", hint:"Imitation & accessories" },
+      { id:"celebration", name:"Celebration Items", hint:"Balloons, decor & more" },
+      { id:"cosmetics", name:"Cosmetics", hint:"Daily essentials" },
+      { id:"school", name:"School Items", hint:"Stationery & bags" },
+      { id:"marriage", name:"Marriage Items", hint:"Wedding essentials" },
+      { id:"handcraft", name:"Handcraft", hint:"Handmade & DIY" },
+      { id:"gifts", name:"Gifts", hint:"Thoughtful gifting" },
+      { id:"jewellery", name:"Jewellery", hint:"Imitation & accessories" },
     ];
 
-    // Icons per category for placeholders
-    const CAT_ICON = {
-      celebration: "fa-balloons",
-      cosmetics: "fa-spray-can-sparkles",
-      school: "fa-pen-ruler",
-      marriage: "fa-heart",
-      handcraft: "fa-scissors",
-      gifts: "fa-gift",
-      jewellery: "fa-gem"
-    };
-
-    // Build realistic products (10 each)
     const PRODUCTS = [
       // Celebration Items (10)
       p("celebration","Premium Latex Balloons (Pack of 50)",199,"Bright assorted balloons for parties & decor.",1),
@@ -1567,39 +1539,36 @@
     ];
 
     function p(catId, name, price, desc, order){
+      const id = `${catId}-${order}`;
       return {
-        id: `${catId}-${order}`,
+        id,
         categoryId: catId,
         name,
         price,
         desc,
-        createdAt: Date.now() - (1000 * 60 * 60 * 24 * (80 - order)), // "newest" sorting support
-        icon: CAT_ICON[catId] || "fa-image",
-        image: "placeholder" // replace with URL later
+        createdAt: Date.now() - (1000 * 60 * 60 * 24 * (80 - order)),
+        image: imgForProduct(id)
       };
     }
 
     /***********************
      * STATE + STORAGE
      ***********************/
-    const LS_KEY = "bhavna_cart_v1";
-    let cart = loadCart(); // {productId: qty}
-    let currentCategory = "all"; // categoryId or "all"
+    const LS_KEY = "bhavna_cart_v2";
+    let cart = loadCart();
+    let currentCategory = "all";
+    let occasionOverrideList = null; // for occasion view only
 
     function loadCart(){
       try{
         const raw = localStorage.getItem(LS_KEY);
         return raw ? JSON.parse(raw) : {};
-      }catch(e){
-        return {};
-      }
+      }catch(e){ return {}; }
     }
-    function saveCart(){
-      localStorage.setItem(LS_KEY, JSON.stringify(cart));
-    }
+    function saveCart(){ localStorage.setItem(LS_KEY, JSON.stringify(cart)); }
 
     /***********************
-     * DOM REFERENCES
+     * DOM
      ***********************/
     const categoryTiles = document.getElementById("categoryTiles");
     const productGrid = document.getElementById("productGrid");
@@ -1607,6 +1576,7 @@
     const searchInput = document.getElementById("searchInput");
     const sortSelect = document.getElementById("sortSelect");
     const cartCount = document.getElementById("cartCount");
+    const loadingBar = document.getElementById("loadingBar");
 
     // Drawer
     const drawer = document.getElementById("drawer");
@@ -1630,19 +1600,22 @@
     const modalCat = document.getElementById("modalCat");
     const modalPrice = document.getElementById("modalPrice");
     const modalDesc = document.getElementById("modalDesc");
+    const modalImg = document.getElementById("modalImg");
     const modalAddBtn = document.getElementById("modalAddBtn");
     const modalGoCartBtn = document.getElementById("modalGoCartBtn");
-
     let modalProductId = null;
 
     /***********************
-     * RENDER: CATEGORY TILES
+     * RENDER: CATEGORY TILES (IMAGES)
      ***********************/
     function renderCategoryTiles(){
       categoryTiles.innerHTML = CATEGORIES.map(c => `
-        <div class="tile" role="button" tabindex="0" onclick="openCategory('${c.id}')" onkeypress="if(event.key==='Enter'){openCategory('${c.id}')}" aria-label="Open ${c.name}">
+        <div class="tile" role="button" tabindex="0"
+             onclick="openCategory('${c.id}')"
+             onkeypress="if(event.key==='Enter'){openCategory('${c.id}')}"
+             aria-label="Open ${c.name}">
           <div class="left">
-            <i class="fa-solid ${c.icon}"></i>
+            <div class="cimg"><img src="${imgForCategory(c.id)}" alt="${escapeHtml(c.name)}" loading="lazy"></div>
             <div>
               <h4>${c.name}</h4>
               <small>${c.hint}</small>
@@ -1653,16 +1626,29 @@
       `).join("");
     }
 
+    function categoryName(catId){
+      const c = CATEGORIES.find(x => x.id === catId);
+      return c ? c.name : "Category";
+    }
+
     /***********************
-     * RENDER: PRODUCT GRID
+     * FILTER + SORT
      ***********************/
     function getFilteredProducts(){
       const q = (searchInput.value || "").trim().toLowerCase();
+
       let list = PRODUCTS.slice();
 
-      if(currentCategory !== "all"){
-        list = list.filter(p => p.categoryId === currentCategory);
+      // Occasion override (if used)
+      if(Array.isArray(occasionOverrideList)){
+        list = occasionOverrideList.slice();
+      }else{
+        // category filter
+        if(currentCategory !== "all"){
+          list = list.filter(p => p.categoryId === currentCategory);
+        }
       }
+
       if(q){
         list = list.filter(p =>
           p.name.toLowerCase().includes(q) ||
@@ -1672,48 +1658,101 @@
       }
 
       const sort = sortSelect.value;
-      if(sort === "lowhigh"){
-        list.sort((a,b) => a.price - b.price);
-      }else if(sort === "highlow"){
-        list.sort((a,b) => b.price - a.price);
-      }else{
-        list.sort((a,b) => b.createdAt - a.createdAt);
-      }
+      if(sort === "lowhigh") list.sort((a,b)=>a.price-b.price);
+      else if(sort === "highlow") list.sort((a,b)=>b.price-a.price);
+      else list.sort((a,b)=>b.createdAt-a.createdAt);
+
       return list;
     }
 
+    /***********************
+     * FAST RENDER (chunked)
+     ***********************/
     function renderProducts(){
       const list = getFilteredProducts();
-      activeCategoryName.textContent = currentCategory === "all" ? "All Categories" : categoryName(currentCategory);
 
-      productGrid.innerHTML = list.map(p => `
-        <div class="card">
-          <div class="img" aria-label="Product image placeholder">
-            <div class="ph"><i class="fa-solid ${p.icon}"></i></div>
-          </div>
-          <div class="body">
-            <p class="name">${escapeHtml(p.name)}</p>
-            <p class="desc">${escapeHtml(p.desc)}</p>
-            <div class="row">
-              <div class="price">₹${p.price}</div>
-              <span class="pill" style="font-size:12px;"><i class="fa-solid fa-layer-group"></i> ${escapeHtml(categoryName(p.categoryId))}</span>
-            </div>
-            <div class="actions">
-              <button class="btn sm primary" onclick="addToCart('${p.id}', 1)"><i class="fa-solid fa-bag-shopping"></i> Add</button>
-              <button class="btn sm" onclick="openDetails('${p.id}')"><i class="fa-solid fa-eye"></i> Details</button>
-            </div>
-          </div>
-        </div>
-      `).join("");
-    }
+      // Title
+      if(Array.isArray(occasionOverrideList)){
+        activeCategoryName.textContent = "Occasion Picks";
+      }else{
+        activeCategoryName.textContent = currentCategory === "all" ? "All Categories" : categoryName(currentCategory);
+      }
 
-    function categoryName(catId){
-      const c = CATEGORIES.find(x => x.id === catId);
-      return c ? c.name : "Category";
+      // show loading bar immediately
+      loadingBar.classList.add("show");
+      productGrid.innerHTML = "";
+
+      const chunkSize = 12; // smooth on phones
+      let i = 0;
+
+      function cardHTML(p){
+        return `
+          <div class="card">
+            <div class="img">
+              <img src="${p.image}" alt="${escapeHtml(p.name)}" loading="lazy">
+            </div>
+            <div class="body">
+              <p class="name">${escapeHtml(p.name)}</p>
+              <p class="desc">${escapeHtml(p.desc)}</p>
+              <div class="row">
+                <div class="price">₹${p.price}</div>
+                <span class="pill" style="font-size:12px;"><i class="fa-solid fa-layer-group"></i> ${escapeHtml(categoryName(p.categoryId))}</span>
+              </div>
+              <div class="actions">
+                <button class="btn sm primary" onclick="addToCart('${p.id}', 1)"><i class="fa-solid fa-bag-shopping"></i> Add</button>
+                <button class="btn sm" onclick="openDetails('${p.id}')"><i class="fa-solid fa-eye"></i> Details</button>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+
+      function renderChunk(){
+        const slice = list.slice(i, i + chunkSize);
+        productGrid.insertAdjacentHTML("beforeend", slice.map(cardHTML).join(""));
+        i += chunkSize;
+
+        if(i < list.length){
+          requestAnimationFrame(renderChunk);
+        }else{
+          loadingBar.classList.remove("show");
+        }
+      }
+
+      requestAnimationFrame(renderChunk);
     }
 
     /***********************
-     * CART OPERATIONS
+     * OPEN CATALOG (no lag + no big space)
+     ***********************/
+    function showCatalog(){
+      document.getElementById("catalogSection").classList.remove("catalog-hidden");
+      // scroll exactly to product list top
+      document.getElementById("catalogTop").scrollIntoView({ behavior:"smooth", block:"start" });
+    }
+
+    window.openCategory = function(catId){
+      // show ONLY that category products
+      occasionOverrideList = null;
+      currentCategory = catId;
+      searchInput.value = "";
+      sortSelect.value = "newest";
+      renderProducts();
+      showCatalog();
+    };
+
+    window.openAll = function(){
+      // show ALL products
+      occasionOverrideList = null;
+      currentCategory = "all";
+      searchInput.value = "";
+      sortSelect.value = "newest";
+      renderProducts();
+      showCatalog();
+    };
+
+    /***********************
+     * CART
      ***********************/
     function addToCart(productId, qty){
       cart[productId] = (cart[productId] || 0) + qty;
@@ -1722,6 +1761,7 @@
       updateCartUI();
       toast("Added to cart");
     }
+    window.addToCart = addToCart;
 
     function setQty(productId, qty){
       if(qty <= 0) delete cart[productId];
@@ -1729,6 +1769,7 @@
       saveCart();
       updateCartUI();
     }
+    window.setQty = setQty;
 
     function cartItems(){
       return Object.entries(cart).map(([id, qty]) => {
@@ -1753,7 +1794,7 @@
 
       cartItemsEl.innerHTML = items.map(({product, qty}) => `
         <div class="cart-item">
-          <div class="miniimg"><i class="fa-solid ${product.icon}"></i></div>
+          <div class="miniimg"><img src="${product.image}" alt="${escapeHtml(product.name)}" loading="lazy"></div>
           <div>
             <div class="ci-top">
               <div>
@@ -1766,9 +1807,9 @@
             </div>
 
             <div class="qty" aria-label="Quantity controls">
-              <button class="qbtn" onclick="setQty('${product.id}', ${(qty-1)})" aria-label="Decrease quantity"><i class="fa-solid fa-minus"></i></button>
+              <button class="qbtn" onclick="setQty('${product.id}', ${qty-1})" aria-label="Decrease quantity"><i class="fa-solid fa-minus"></i></button>
               <div class="qval">${qty}</div>
-              <button class="qbtn" onclick="setQty('${product.id}', ${(qty+1)})" aria-label="Increase quantity"><i class="fa-solid fa-plus"></i></button>
+              <button class="qbtn" onclick="setQty('${product.id}', ${qty+1})" aria-label="Increase quantity"><i class="fa-solid fa-plus"></i></button>
 
               <div style="margin-left:auto; font-weight:900; color:rgba(74,15,30,.95);">
                 ₹${product.price * qty}
@@ -1788,6 +1829,7 @@
       saveCart();
       updateCartUI();
     }
+    window.removeItem = removeItem;
 
     function clearCart(){
       cart = {};
@@ -1801,13 +1843,11 @@
     }
 
     /***********************
-     * WHATSAPP INTEGRATION
+     * WHATSAPP
      ***********************/
     function waUrl(message){
-      // wa.me requires encoded message
       return `https://wa.me/${BUSINESS.waNumber}?text=${encodeURIComponent(message)}`;
     }
-
     function openWhatsAppMessage(message){
       window.open(waUrl(message), "_blank", "noopener");
     }
@@ -1876,35 +1916,9 @@ Please share details.`;
     }
 
     /***********************
-     * ROUTING / NAV (HASH)
-     ***********************/
-   function openCategory(catId){
-  currentCategory = catId;
-  renderProducts();
-
-  // Scroll exactly to product list (no extra empty space)
-  document.getElementById("catalogTop").scrollIntoView({ behavior: "smooth", block: "start" });
-     document.getElementById("catalogSection").classList.remove("catalog-hidden");
-}
-
-function openAll(){
-  currentCategory = "all";
-  renderProducts();
-  document.getElementById("catalogTop").scrollIntoView({ behavior: "smooth", block: "start" });
-  document.getElementById("catalogSection").classList.remove("catalog-hidden");
-}
-    function handleHash(){
-      const h = (location.hash || "#home").replace("#","");
-      if(h === "catalog"){
-        // keep currentCategory
-        renderProducts();
-      }
-    }
-
-    /***********************
      * PRODUCT DETAILS MODAL
      ***********************/
-    function openDetails(productId){
+    window.openDetails = function(productId){
       const product = PRODUCTS.find(p => p.id === productId);
       if(!product) return;
 
@@ -1913,11 +1927,11 @@ function openAll(){
       modalCat.textContent = categoryName(product.categoryId);
       modalPrice.textContent = `₹${product.price}`;
       modalDesc.textContent = product.desc;
+      modalImg.src = product.image;
 
       modalOverlay.classList.add("open");
       modalOverlay.setAttribute("aria-hidden","false");
-    }
-    window.openDetails = openDetails;
+    };
 
     function closeModal(){
       modalOverlay.classList.remove("open");
@@ -1926,7 +1940,7 @@ function openAll(){
     }
 
     /***********************
-     * DRAWER CONTROLS
+     * DRAWER
      ***********************/
     function openCart(){
       drawer.classList.add("open");
@@ -1939,7 +1953,7 @@ function openAll(){
     }
 
     /***********************
-     * ENQUIRY FORM
+     * ENQUIRY
      ***********************/
     const enquiryForm = document.getElementById("enquiryForm");
     const enqError = document.getElementById("enqError");
@@ -1970,7 +1984,7 @@ Please share availability and details.`;
     }
 
     /***********************
-     * OCCASION FILTER (quick)
+     * OCCASION FILTER (shows only relevant products)
      ***********************/
     const occasionMap = {
       "Birthday": ["celebration","gifts"],
@@ -1982,38 +1996,17 @@ Please share availability and details.`;
 
     function filterByOccasion(name){
       const cats = occasionMap[name] || [];
+      occasionOverrideList = PRODUCTS.filter(p => cats.includes(p.categoryId));
       currentCategory = "all";
-      location.hash = "#catalog";
+      searchInput.value = "";
+      sortSelect.value = "newest";
       renderProducts();
-      searchInput.value = ""; // reset
-      // Pre-filter by setting a query that matches categories
-      // Instead of forced filter, we set search to the occasion name so it feels intentional.
-      // Then we highlight relevant categories by filtering list to those cats.
-      const list = PRODUCTS.filter(p => cats.includes(p.categoryId));
-      productGrid.innerHTML = list.sort((a,b)=>b.createdAt-a.createdAt).map(p => `
-        <div class="card">
-          <div class="img"><div class="ph"><i class="fa-solid ${p.icon}"></i></div></div>
-          <div class="body">
-            <p class="name">${escapeHtml(p.name)}</p>
-            <p class="desc">${escapeHtml(p.desc)}</p>
-            <div class="row">
-              <div class="price">₹${p.price}</div>
-              <span class="pill" style="font-size:12px;"><i class="fa-solid fa-layer-group"></i> ${escapeHtml(categoryName(p.categoryId))}</span>
-            </div>
-            <div class="actions">
-              <button class="btn sm primary" onclick="addToCart('${p.id}', 1)"><i class="fa-solid fa-bag-shopping"></i> Add</button>
-              <button class="btn sm" onclick="openDetails('${p.id}')"><i class="fa-solid fa-eye"></i> Details</button>
-            </div>
-          </div>
-        </div>
-      `).join("");
-
-      window.scrollTo({ top: document.getElementById("catalogSection").offsetTop - 84, behavior: "smooth" });
+      showCatalog();
       toast(`Showing ${name} picks`);
     }
 
     /***********************
-     * SMALL UTILITIES
+     * UTIL
      ***********************/
     function escapeHtml(str){
       return String(str)
@@ -2025,7 +2018,6 @@ Please share availability and details.`;
     }
 
     function toast(text){
-      // tiny toast with zero dependencies
       const t = document.createElement("div");
       t.textContent = text;
       t.style.position="fixed";
@@ -2063,7 +2055,9 @@ Please share availability and details.`;
 
     // Buttons
     document.getElementById("openAllBtn").addEventListener("click", openAll);
+
     document.getElementById("backToCatsBtn").addEventListener("click", () => {
+      document.getElementById("catalogSection").classList.add("catalog-hidden");
       window.scrollTo({ top: document.getElementById("categories").offsetTop - 84, behavior: "smooth" });
     });
 
@@ -2108,13 +2102,12 @@ Please share availability and details.`;
 
     placeOrderBtn.addEventListener("click", () => {
       if(!validateCheckout()) return;
-      const msg = buildOrderMessage();
-      openWhatsAppMessage(msg);
+      openWhatsAppMessage(buildOrderMessage());
     });
 
     // Search/sort
-    searchInput.addEventListener("input", renderProducts);
-    sortSelect.addEventListener("change", renderProducts);
+    searchInput.addEventListener("input", () => { occasionOverrideList = null; renderProducts(); });
+    sortSelect.addEventListener("change", () => { renderProducts(); });
 
     // Enquiry
     sendEnquiryBtn.addEventListener("click", sendEnquiry);
@@ -2125,13 +2118,8 @@ Please share availability and details.`;
     modalOverlay.addEventListener("click", (e) => { if(e.target === modalOverlay) closeModal(); });
     document.addEventListener("keydown", (e)=>{ if(e.key === "Escape"){ closeModal(); closeCart(); } });
 
-    modalAddBtn.addEventListener("click", () => {
-      if(modalProductId) addToCart(modalProductId, 1);
-    });
-    modalGoCartBtn.addEventListener("click", () => {
-      closeModal();
-      openCart();
-    });
+    modalAddBtn.addEventListener("click", () => { if(modalProductId) addToCart(modalProductId, 1); });
+    modalGoCartBtn.addEventListener("click", () => { closeModal(); openCart(); });
 
     // Occasion clicks
     document.querySelectorAll("#occasionGrid .oc").forEach(el => {
@@ -2140,20 +2128,14 @@ Please share availability and details.`;
 
     // Go to catalog from enquiry section
     document.getElementById("goToCatalogBtn").addEventListener("click", () => {
-      location.hash = "#categories";
       window.scrollTo({ top: document.getElementById("categories").offsetTop - 84, behavior: "smooth" });
     });
-
-    // Hash routing
-    window.addEventListener("hashchange", handleHash);
 
     /***********************
      * INIT
      ***********************/
     renderCategoryTiles();
-    renderProducts();
     updateCartUI();
-    handleHash();
 
     // reveal animations
     const io = new IntersectionObserver((entries)=>{
