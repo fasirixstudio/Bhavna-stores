@@ -864,32 +864,32 @@
     .float-wa:hover{ transform: translateY(-3px); box-shadow: 0 24px 60px rgba(0,0,0,.22); }
 
     /* ✅ NEW: Floating Cart button ABOVE WhatsApp */
-  .float-cart{
-  position: fixed;
-  bottom: 74px;   /* sits above WhatsApp */
-  right: 16px;
-  z-index: 75;
-
-  display: flex;
-  align-items: center;
-  gap: 10px;
-
-  padding: 12px 16px;
-  border-radius: 999px;
-
-  background: linear-gradient(135deg, #4a0f1e, #6a1b2e);
-  color: #fff;
-
-  font-weight: 800;
-  box-shadow: 0 18px 40px rgba(0,0,0,.20);
-
-  transition: transform .2s ease, box-shadow .2s ease;
-}
-
-.float-cart:hover{
-  transform: translateY(-3px);
-  box-shadow: 0 24px 55px rgba(0,0,0,.25);
-}
+    .float-cart{
+      position:fixed;
+      bottom: 74px; /* above whatsapp */
+      right: 16px;
+      z-index: 71;
+      width:56px; height:56px;
+      border-radius: 18px;
+      border:1px solid rgba(27,26,25,.12);
+      background: rgba(255,255,255,.85);
+      backdrop-filter: blur(10px);
+      box-shadow: 0 18px 44px rgba(0,0,0,.16);
+      display:flex; align-items:center; justify-content:center;
+      cursor:pointer;
+      transition: transform .16s ease, box-shadow .16s ease, border-color .16s ease;
+      position:relative;
+    }
+    .float-cart:hover{
+      transform: translateY(-3px);
+      border-color: rgba(202,162,74,.45);
+      box-shadow: 0 24px 60px rgba(0,0,0,.22);
+    }
+    .float-cart i{ color: rgba(74,15,30,.95); font-size:20px; }
+    .float-cart .cart-count{
+      top:-6px; right:-6px;
+      border-color: rgba(255,255,255,.9);
+    }
 
     /* Reveal animations */
     .reveal{
@@ -1339,7 +1339,11 @@
   </footer>
 
   <!-- ✅ NEW: Floating Cart -->
-  
+  <button class="float-cart" id="floatCartBtn" aria-label="Open cart">
+    <i class="fa-solid fa-bag-shopping"></i>
+    <div class="cart-count" id="cartCountFloat">0</div>
+  </button>
+
   <!-- Floating WhatsApp -->
   <a class="float-wa" id="floatWaBtn" href="#" aria-label="Chat on WhatsApp">
     <i class="fa-brands fa-whatsapp" style="font-size:18px;"></i>
@@ -1764,15 +1768,15 @@
     }
 
     function updateCartCount(){
-  const count = Object.values(cart).reduce((a,b) => a + b, 0);
-  cartCount.textContent = count;
-  cartCount.style.display = count ? "flex" : "none";
+      const count = Object.values(cart).reduce((a,b) => a + b, 0);
 
-  const floatCart = document.getElementById("floatCartBtn");
-  if(floatCart){
-    floatCart.style.display = count ? "flex" : "none";
-  }
-}
+      cartCount.textContent = count;
+      cartCount.style.display = count ? "flex" : "none";
+
+      cartCountFloat.textContent = count;
+      cartCountFloat.style.display = count ? "flex" : "none";
+    }
+
     function renderCart(){
       const items = cartItems();
       emptyCartHint.style.display = items.length ? "none" : "block";
@@ -1926,18 +1930,12 @@ Please share details.`;
     }
     window.openCategory = openCategory;
 
-   function openAll(){
-  currentCategory = "all";
-
-  const section = document.getElementById("catalogSection");
-  section.classList.remove("catalog-hidden"); // IMPORTANT: show first
-
-  // Wait 1 frame so browser applies display change, then render + scroll
-  requestAnimationFrame(() => {
-    renderProducts();
-    section.scrollIntoView({ behavior: "smooth", block: "start" });
-  });
-}
+    function openAll(){
+      currentCategory = "all";
+      showCatalogAndScroll();
+      renderProducts();
+      toast("Showing all products");
+    }
     window.openAll = openAll;
 
     function handleHash(){
@@ -2132,11 +2130,6 @@ Please share availability and details.`;
       window.scrollTo({ top: document.getElementById("enquiry").offsetTop - 84, behavior: "smooth" });
       setTimeout(()=> enqName.focus(), 250);
     });
-    // Floating Cart button
-document.getElementById("floatCartBtn").addEventListener("click", function(e){
-  e.preventDefault();
-  openCart();
-});
 
     document.getElementById("visitWaBtn").addEventListener("click", (e)=>{ e.preventDefault(); quickHello(); });
     document.getElementById("footerWaLink").addEventListener("click", (e)=>{ e.preventDefault(); quickHello(); });
