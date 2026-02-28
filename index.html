@@ -1384,10 +1384,10 @@
     <div class="cart-count" id="cartCountFloat">0</div>
   </button>
 <!-- Floating Cart -->
-<a class="float-cart-mini" id="floatCartBtn" href="#" aria-label="Open Cart">
+<button class="float-cart-mini" id="floatCartBtn" href="#" aria-label="Open Cart">
   <i class="fa-solid fa-bag-shopping"></i>
   <span class="float-badge" id="floatCartCount">0</span>
-</a>
+</button>
   <!-- Floating WhatsApp -->
   <a class="float-wa" id="floatWaBtn" href="#" aria-label="Chat on WhatsApp">
     <i class="fa-brands fa-whatsapp" style="font-size:18px;"></i>
@@ -2027,10 +2027,10 @@ Please share details.`;
      * DRAWER CONTROLS
      ***********************/
     function openCart(){
-      drawer.classList.add("open");
-      drawerOverlay.classList.add("open");
-      renderCart();
-    }
+  drawer.classList.add("open");
+  drawerOverlay.classList.add("open");
+  renderCart();
+}
     function closeCart(){
       drawer.classList.remove("open");
       drawerOverlay.classList.remove("open");
@@ -2180,10 +2180,10 @@ Please share availability and details.`;
 
     // Floating Cart button
 const floatCartBtn = document.getElementById("floatCartBtn");
+
 if(floatCartBtn){
-  floatCartBtn.addEventListener("click", function(e){
-    e.preventDefault();
-    openCart();
+  floatCartBtn.addEventListener("click", function(){
+    openCart();   // this opens the drawer directly
   });
 }
     document.getElementById("visitWaBtn").addEventListener("click", (e)=>{ e.preventDefault(); quickHello(); });
